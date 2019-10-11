@@ -25,10 +25,19 @@ doStuff();
 
 
 const doPromise = async () => {
-  const promise = new Promise((resolve) => {
+  try {
+    const promise = new Promise((resolve) => {
+      setTimeout(() => resolve(5), 1000);
+    });
+    const result = await promise;
+  } catch (error) {
+    console.error(error);
+    return;
+  }
+  const promise2 = new Promise((resolve) => {
     setTimeout(() => resolve(5), 1000);
   });
-  const result = await promise;
+  const result = await promise2;
   console.log("Here I am", result);
   return "I am done";
 };
