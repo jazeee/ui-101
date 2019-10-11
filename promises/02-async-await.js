@@ -22,3 +22,29 @@ const doStuff = async () => {
 };
 
 doStuff();
+
+
+const doPromise = async () => {
+  const promise = new Promise((resolve) => {
+    setTimeout(() => resolve(5), 1000);
+  });
+  const result = await promise;
+  console.log("Here I am", result);
+  return "I am done";
+};
+
+const doPromiseAsAPromise = () => {
+  const promise = new Promise((resolve) => {
+    setTimeout(() => resolve(5), 1000);
+  });
+  return promise.then((result) => {
+    console.log("Here I am", result);
+    return "I am done 2";
+  });
+}
+
+const thisIsAPromise = doPromise();
+const thisIsAPromiseAgain = doPromiseAsAPromise();
+
+thisIsAPromise.then(console.log);
+thisIsAPromiseAgain.then(console.log);
